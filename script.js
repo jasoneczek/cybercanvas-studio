@@ -1,7 +1,16 @@
 const grid = document.querySelector('#grid');
 
+
+
+function changeGridSize(value) {
+  gridSize = document.querySelector('#gridSize').textContent = `${value} X ${value}`;
+  createGrid(value);
+}
+
 function createGrid(size) {
   const boxSize = 100 / size;
+
+  grid.innerHTML = '';
 
   for (let i = 0; i < (size * size); i++) {
     const box = document.createElement("div");
