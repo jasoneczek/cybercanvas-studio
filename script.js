@@ -1,7 +1,12 @@
 const grid = document.querySelector('#grid');
 
 
-
+function draw(box) {
+  let currentMode = 'black';
+  if (currentMode) {
+    box.style.backgroundColor = currentMode;
+  }
+}
 
 // Sets up event listeners to enable drawing functionality
 function setupGridEventListeners() {
@@ -11,17 +16,14 @@ function setupGridEventListeners() {
   boxes.forEach(box => {
     box.addEventListener('mousedown', () => {
       isDrawing = true;
-      //draw(box);
-      console.log(isDrawing);
+      draw(box);
     })
     box.addEventListener('mouseup', () => {
       isDrawing = false;
-      //draw(box);
-      console.log(isDrawing);
     })
     box.addEventListener('mouseover', () => {
       if (isDrawing) {
-        //draw(box);
+      draw(box);
       }
     })
   })
