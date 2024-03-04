@@ -11,8 +11,14 @@
   <div class="pallette">
     <div class="grid-size-control-container">
       <label for="grid-size-slider" class="grid-size-control-label">Grid Size:</label>
-      <input type="range" min="16" max="64" id="gridSizeSlider" oninput="changeGridSize(this.value)">
       <output id="gridSize">16 X 16</output>
+      <input type="range" min="16" max="64" id="gridSizeSlider" oninput="changeGridSize(this.value)">
+    </div>
+    <div class="mode-buttons">
+      <button class="mode-btn" data-mode="black">Black</button>
+      <button class="mode-btn" data-mode="shade">Shade</button>
+      <button class="mode-btn" data-mode="rgb">Rainbow</button>
+      <button class="mode-btn" data-mode="erase">Erase</button>
     </div>
   </div>
 

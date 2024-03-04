@@ -1,11 +1,19 @@
+let currentMode = 'black';
 const grid = document.querySelector('#grid');
+const modeButtons = document.querySelectorAll('.mode-btn');
 
+// Button event listeners
+modeButtons.forEach(modeButton => modeButton.addEventListener('click', setCurrentMode));
 
+// Set current drawing mode based on clicked mode button
+function setCurrentMode(e) {
+  currentMode = e.target.getAttribute('data-mode') || currentMode;
+  console.log(currentMode);
+}
+
+// Apply current drawing mode to grid box
 function draw(box) {
-  let currentMode = 'black';
-  if (currentMode) {
     box.style.backgroundColor = currentMode;
-  }
 }
 
 // Sets up event listeners to enable drawing functionality
