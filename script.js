@@ -5,14 +5,24 @@ const modeButtons = document.querySelectorAll('.mode-btn');
 // Button event listeners
 modeButtons.forEach(modeButton => modeButton.addEventListener('click', setCurrentMode));
 
+// Generate a random RGB color for Rainbow mode
+function getRandomRgbColor() {
+  const R = Math.floor(Math.random() * 256);
+  const G = Math.floor(Math.random() * 256);
+  const B = Math.floor(Math.random() * 256);
+  return `rgb(${R}, ${G}, ${B})`;
+}
+
 // Set current drawing mode based on clicked mode button
 function setCurrentMode(e) {
   currentMode = e.target.getAttribute('data-mode') || currentMode;
-  console.log(currentMode);
 }
 
 // Apply current drawing mode to grid box
 function draw(box) {
+  if (currentMode === 'rgb') {
+    box.style.backgroundColor = getRandomRgbColor();
+  }
     box.style.backgroundColor = currentMode;
 }
 
