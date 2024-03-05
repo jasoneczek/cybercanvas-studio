@@ -1,9 +1,19 @@
 let currentMode = 'black';
 const grid = document.querySelector('#grid');
 const modeButtons = document.querySelectorAll('.mode-btn');
+const clearButton = document.querySelector('#clearBtn');
 
 // Button event listeners
 modeButtons.forEach(modeButton => modeButton.addEventListener('click', setCurrentMode));
+clearButton.addEventListener('click', clearGrid);
+
+// Clear grid
+function clearGrid() {
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => {
+    box.style.backgroundColor = 'transparent';
+  })
+}
 
 // Generate eraser mode
 function getEraser(box) {
