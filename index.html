@@ -3,28 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
   <title>CyberCanvas Studio</title>
 </head>
 <body>
-
-  <div class="pallette">
-    <div class="grid-size-control-container">
-      <label for="grid-size-slider" class="grid-size-control-label">Grid Size:</label>
-      <output id="gridSize">16 X 16</output>
-      <input type="range" min="16" max="64" id="gridSizeSlider" oninput="changeGridSize(this.value)">
+  
+  <main>
+    <div class="container">   
+      <!-- Drawing tool selection panel -->
+      <div class="buttons">
+        <button class="btn mode-btn" data-mode="black"></button>
+        <button class="btn mode-btn" data-mode="shade"></button>
+        <button class="btn mode-btn" data-mode="rgb"></button>
+        <button class="btn mode-btn" data-mode="erase"></button> 
+      </div>
+      
+      <!-- Drawing canvas -->
+      <div id="grid" class="grid"></div>
+      
+      <!-- Grid control panel -->
+      <div class="grid-control">
+        <!-- Current drawing mode display -->
+        <div class="mode-display-container">
+          <p class="mode-label">Current Mode</p>
+          <div id="modeDisplay" class="mode-display"></div>
+        </div>
+        <!-- Gridlines toggle on/off -->
+        <div class="toggle-container">
+          <label class="toggle-header">Gridlines</label>
+          <div id="toggle" class="toggle"></div>
+        </div>
+        <!-- Grid dimensions display -->
+        <div class="grid-size-control-container">
+          <label for="grid-size-slider" class="label">Dimensions</label>
+          <output id="gridSize" class="output">16</output>
+          <input type="range" min="16" max="64" id="gridSizeSlider" value="16" oninput="changeGridSize(this.value)">
+        </div>
+        <!-- Clear grid button -->
+        <button id="clearBtn" class="btn clear-btn">Clear Grid</button>
+      </div>
     </div>
-    <div class="mode-buttons">
-      <button class="mode-btn" data-mode="black">Black</button>
-      <button class="mode-btn" data-mode="shade">Shade</button>
-      <button class="mode-btn" data-mode="rgb">Rainbow</button>
-      <button class="mode-btn" data-mode="erase">Erase</button>
-    </div>
-    <button id="clearBtn" class="clear-btn">Clear</button>
-  </div>
+  </main>
 
-  <div id="grid" class="grid"></div>
-
+  <footer>
+    <a href="https://github.com/jasoneczek"><i class="fa-brands fa-github fa-2x repo-"></i><span class="repo-name">jasoneczek</span></a>
+  </footer>
 
   <script src="script.js"></script>
   

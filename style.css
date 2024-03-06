@@ -5,20 +5,290 @@
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #333;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+.container {
+  background-color: black;
+  display: flex;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Buttons panel */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  padding: 4rem 1rem;
+}
+
+.mode-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+.mode-btn:hover {
+  background-color: #1980db;
+  transition: 0.2s ease-in-out;
+}
+
+.mode-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* Black mode */
+.mode-btn[data-mode="black"]::before {
+  background-color: #000;
+  border: .1em solid #fff;
+}
+
+/* Shade mode */
+.mode-btn[data-mode="shade"]::before {
+  background-color: #777;
+  border: .1em solid #fff;
+}
+
+/* Rainbow mode */
+.mode-btn[data-mode="rgb"]::before {
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  border: .1em solid #fff;
+}
+
+/* Erase mode */
+.mode-btn[data-mode="erase"]::before {
+  background-color: white;
+  border: .1em solid #222;
+}
+
+/* Grid appearance panel */
+.grid-control {
+  padding: 1rem 1rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Current drawing mode display */
+.mode-display-container {
+  background-color: #222;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mode-label {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.mode-display {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* Black mode */
+.mode-display.black {
+  background-color: #000;
+  border: .1em solid #ddd;
+}
+
+/* Shade mode */
+.mode-display.shade {
+  background-color: #777;
+  border: .1em solid #ddd;
+}
+
+/* Rainbow mode */
+.mode-display.rgb {
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  border: .1em solid #ddd;
+}
+
+/* Erase mode */
+.mode-display.erase {
+  background-color: white;
+  border: .1em solid #ddd;
+}
+
+/* Switch to toggle grid lines on/off */
+.toggle-container {
+  width: 100%;
+  padding: 1rem;
+  background-color: #222;
+}
+
+.toggle-header {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.toggle {
+  position: relative;
+  height: 40px;
+  width: 70px;
+  background-color: #1980db;
+  border-radius: 100px;
+  cursor: pointer;
+  margin: 2rem auto 0;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+  left: 4px;
+  transform: translateY(12%);
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle.active::before {
+  left: calc(100% - 32px - 4px);
+}
+
+.toggle.active {
+  background-color: #777;
+}
+
+.grid-size-control-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #222;
+}
+
+/* Grid dimensions display */
+.label {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.output {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  font-size: 4rem;
+  color: #fff;
+  background-color: #333;
+  margin: 1rem 0;
+  border-radius: 50%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background-color: #777;
+  border-radius: 10px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Clear grid button */
+.clear-btn {
+  width: 100%;
+  font-size: 1rem;
+  padding: .75rem;
+  border: none;
+  background-color: #1980db;
+  color: #fff;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  opacity: 0.7;
+  transition: 0.3s ease-in-out;
+}
+
+/* Drawing canvas */
 .grid {
-  width: 500px;
-  height: 500px;
-  border: 1px solid steelblue;
+  width: 600px;
+  height: 600px;
+  background-color: #fff;
   display: flex;
   flex-wrap: wrap;
+  margin: 1rem 2rem;
 }
 
 .box {
-  border: 1px solid steelblue;
+  border: 1px solid #ddd;
+}
+
+.box.nolines {
+  border: none;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #777;
+  
+}
+
+a:hover {
+  color: #aaa;
+  transition: 0.2s ease-in-out;
+}
+
+.repo-name {
+  font-size: 1.5rem;
+  margin-left: 1.5rem;
 }
