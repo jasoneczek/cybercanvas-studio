@@ -2,10 +2,31 @@ let currentMode = 'black';
 const grid = document.querySelector('#grid');
 const modeButtons = document.querySelectorAll('.mode-btn');
 const clearButton = document.querySelector('#clearBtn');
+const toggle = document.querySelector('#toggle');
+const modeDisplay = document.querySelector('#modeDisplay');
 
 // Button event listeners
-modeButtons.forEach(modeButton => modeButton.addEventListener('click', setCurrentMode));
+modeButtons.forEach(modeButton => modeButton.addEventListener('click', function(e) {
+  setCurrentMode(e);
+  console.log('Current mode:', currentMode);
+  displayDrawingMode(currentMode);
+}));
 clearButton.addEventListener('click', clearGrid);
+toggle.addEventListener('click', toggleGridlines);
+
+// Display current drawing mode
+function displayDrawingMode(currentMode) {
+  modeDisplay.className = 'mode-display ' + currentMode;
+}
+
+// Toggle grid lines on/off
+function toggleGridlines() {
+  toggle.classList.toggle('active');
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => {
+    box.classList.toggle('nolines');
+  })
+}
 
 // Clear grid
 function clearGrid() {
@@ -99,7 +120,7 @@ function setupGridEventListeners() {
 
 // Changes number of rows and columns based on input value
 function changeGridSize(value) {
-  gridSize = document.querySelector('#gridSize').textContent = `${value} X ${value}`;
+  gridSize = document.querySelector('#gridSize').textContent = `${value}`;
   createGrid(value);
 }
 
@@ -120,3 +141,4 @@ function createGrid(size) {
 }
 
 createGrid(16);
+displayDrawingMode(currentMode);
